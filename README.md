@@ -4,42 +4,6 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue)
 ![Tomcat](https://img.shields.io/badge/Apache_Tomcat-11.0-blue)
 
-## 📁 Project Structure
-Milestone 1/
-├── .idea/
-│ ├── .gitignore
-│ ├── misc.xml
-│ ├── modules.xml
-│ ├── vcs.xml
-│ └── workspace.xml
-│
-├── src/
-│ └── main/
-│ ├── java/
-│ │ └── com/bc/
-│ │ ├── servlets/
-│ │ │ ├── LoginServlet.java
-│ │ │ └── RegisterServlet.java
-│ │ └── util/
-│ │ └── DBConnection.java
-│ │
-│ └── webapp/
-│ ├── WEB-INF/
-│ │ ├── lib/
-│ │ │ ├── jakarta.servlet-api-5.0.0.jar
-│ │ │ └── jbcrypt-0.4.jar
-│ │ └── web.xml
-│ │
-│ ├── dashboard.jsp
-│ ├── favicon.ico
-│ ├── index.jsp
-│ ├── login.jsp
-│ ├── register.jsp
-│ └── README.md
-│
-├── out/
-└── Milestone 1.iml
-
 ## 🛠️ Setup Guide
 
 ### 1. Database Configuration
