@@ -5,37 +5,66 @@
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
 
-    <!-- Basic CSS Styling -->
+    <!-- Enhanced CSS Styling -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1 {
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
             color: #2c3e50;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
             text-align: center;
         }
+
         .options {
             display: flex;
+            flex-direction: row;
+            gap: 30px;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
         }
+
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
             background-color: #3498db;
-            color: white;
+            color: #fff;
+            padding: 14px 30px;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .btn:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
