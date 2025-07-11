@@ -20,11 +20,11 @@ mvn clean package
 cp target/student-wellness.war $CATALINA_HOME/webapps/
 catalina.sh run
 🌐 Access Points
-Home: http://localhost:8080/index.jsp
+Home: http://localhost:8081/index.jsp
 
-Login: http://localhost:8080/login.jsp
+Login: http://localhost:8081/login.jsp
 
-Register: http://localhost:8080/register.jsp
+Register: http://localhost:8081/register.jsp
 
 ✅ Key Features
 Secure password hashing with jBCrypt
