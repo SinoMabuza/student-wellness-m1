@@ -72,8 +72,8 @@
 <h1>Welcome to the Student Wellness Portal</h1>
 
 <div class="options">
-    <a href="${pageContext.request.contextPath}/login.jsp" class="btn">Login</a>
-    <a href="${pageContext.request.contextPath}/register.jsp" class="btn">Register</a>
+    <a href="<%= request.getContextPath() %>/login.jsp" class="btn">Login</a>
+    <a href="<%= request.getContextPath() %>/register.jsp" class="btn">Register</a>
 </div>
 
 </body>

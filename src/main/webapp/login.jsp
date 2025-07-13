@@ -100,7 +100,7 @@
   <p class="error"><%= request.getAttribute("error") %></p>
   <% } %>
 
-  <form action="${pageContext.request.contextPath}/login" method="post">
+  <form action="<%= request.getContextPath() %>/login" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email"
            value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"
@@ -114,7 +114,7 @@
 
   <div class="register-link">
     <p>Don't have an account?
-      <a href="${pageContext.request.contextPath}/register.jsp">Register here</a></p>
+      <a href="<%= request.getContextPath() %>/register.jsp">Register here</a></p>
   </div>
 </div>
 
