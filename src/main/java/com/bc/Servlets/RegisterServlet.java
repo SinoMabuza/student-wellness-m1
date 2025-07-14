@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/register")
+@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
     @Override
@@ -30,18 +30,18 @@ public class RegisterServlet extends HttpServlet {
 
             // Check if user already exists
             PreparedStatement checkStmt = conn.prepareStatement(
-                    "SELECT * FROM users WHERE email = ? OR student_number = ?"
+                    "SELECT 1 FROM users WHERE email = ? OR student_number = ?"
             );
             checkStmt.setString(1, email);
             checkStmt.setString(2, studentNumber);
             ResultSet rs = checkStmt.executeQuery();
 
             if (rs.next()) {
-                // Duplicate user
+                // User exists
                 request.setAttribute("error", "Email or student number already exists.");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
             } else {
-                // Register new user
+                // Insert user
                 PreparedStatement ps = conn.prepareStatement(
                         "INSERT INTO users (student_number, name, surname, email, phone, password) " +
                                 "VALUES (?, ?, ?, ?, ?, ?)"
@@ -54,25 +54,25 @@ public class RegisterServlet extends HttpServlet {
                 ps.setString(6, hashedPassword);
                 ps.executeUpdate();
 
-                // Create session and redirect
+                // Start session and redirect
                 HttpSession session = request.getSession();
                 session.setAttribute("userName", name);
                 session.setAttribute("email", email);
 
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("dashboard.jsp");  // ✅ Redirects to dashboard
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Registration failed: " + e.getMessage());
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
     }
 
-    // Handle GET (optional)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 }

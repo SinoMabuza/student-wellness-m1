@@ -11,7 +11,6 @@
 <html lang="en">
 <head>
   <title>Dashboard</title>
-  <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

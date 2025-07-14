@@ -10,7 +10,6 @@
   <name>StudentBcWellness Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
-  <!-- ✅ Add compiler version properties -->
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
@@ -32,9 +31,10 @@
     </dependency>
 
     <dependency>
+
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.7.1</version>
+      <version>42.7.7</version>
     </dependency>
 
     <dependency>
@@ -47,7 +47,6 @@
   <build>
     <finalName>StudentBcWellness</finalName>
 
-    <!-- ✅ Optional: Explicitly configure compiler plugin -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
