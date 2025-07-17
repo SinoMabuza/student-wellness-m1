@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import static com.bc.util.BasicUtilities.*;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
@@ -19,51 +21,28 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
-        try (Connection conn = DatabaseUtil.getConnection()) {
-            String sql = "SELECT name, password FROM users WHERE email = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                String dbHashedPassword = rs.getString("password");
-                String name = rs.getString("name");
-
-                if (BCrypt.checkpw(password, dbHashedPassword)) {
-                    // ✅ Login successful
-                    HttpSession session = request.getSession();
-                    session.setAttribute("userName", name);
-                    session.setAttribute("email", email);
-
-                    response.sendRedirect("dashboard.jsp");  // ✅ Redirects to dashboard
-
-
-                } else {
-                    // ❌ Incorrect password
-                    request.setAttribute("error", "Invalid email or password.");
-                    request.setAttribute("email", email); // retain entered email
-                    request.getRequestDispatcher("/login.jsp").forward(request, response);
-                }
-
+        try {
+            if(FindAndCompareUser(email, password)) {
+                // If user is found and password matches, set session attributes
+                SetUserSession(request, "0", email);
+                response.sendRedirect(request.getContextPath() + "/DashboardServlet");
+                return;
             } else {
-                // ❌ No such user
-                request.setAttribute("error", "Account not found.");
-                request.setAttribute("email", email);
+                // If authentication fails, redirect to login page with error message
+                request.setAttribute("errorMessage", "Invalid email or password.");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Login failed due to a server error.");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        // ✅ Redirect to login page respecting the context path
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
+
+
+
 }

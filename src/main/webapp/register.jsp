@@ -85,11 +85,12 @@
   </style>
 </head>
 <body>
-
 <div class="register-container">
   <h2>Register for BC Student Wellness</h2>
-
-  <form action="register" method="post">
+  <% if (request.getAttribute("errorMessage") != null) { %>
+  <p class="error"><%= request.getAttribute("errorMessage") %></p>
+  <% } %>
+  <form action="RegisterServlet" method="post">
     <label for="student_number">Student Number:</label>
     <input type="text" id="student_number" name="student_number" required>
 

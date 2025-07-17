@@ -96,11 +96,11 @@
 <div class="login-container">
   <h2>Login to BC Student Wellness</h2>
 
-  <% if (request.getAttribute("error") != null) { %>
-  <p class="error"><%= request.getAttribute("error") %></p>
-  <% } %>
+  <% if (request.getAttribute("errorMessage") != null) { %>
+    <p class="error"><%= request.getAttribute("errorMessage") %></p>
+    <% } %>
 
-  <form action="<%= request.getContextPath() %>/login" method="post">
+  <form action="LoginServlet" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email"
            value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"
@@ -114,7 +114,7 @@
 
   <div class="register-link">
     <p>Don't have an account?
-      <a href="<%= request.getContextPath() %>/register.jsp">Register here</a></p>
+      <a href="<%= request.getContextPath() %>/RegisterServlet">Register here</a></p>
   </div>
 </div>
 
